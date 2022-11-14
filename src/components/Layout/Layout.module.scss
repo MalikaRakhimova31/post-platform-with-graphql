@@ -1,0 +1,17 @@
+@import 'styles/_unit.scss';
+
+
+.root {
+    // display: flex;
+    // flex-direction: column;
+    &__body {
+        display: flex;
+    }
+    &__aside {
+        width: rem(208);
+        background-color: #fff;
+        height: 100vh;
+    }
+}
+
+
