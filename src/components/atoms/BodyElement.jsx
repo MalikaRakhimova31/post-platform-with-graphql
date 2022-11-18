@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './Atoms.module.scss';
 
-
-
-export default function BodyElement({children, ...restProps}) {
+export default function BodyElement(props) {
     return (
-        <div className={styles.bodyElem}>{children}</div>
+        <div className={styles.bodyElem} {...props} />
     )
 }

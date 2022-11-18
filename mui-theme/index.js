@@ -22,7 +22,7 @@ export default createTheme({
       styleOverrides: {
         root: {
           cursor: "pointer!important",
-          backgroundColor: "#177EFF",
+          backgroundColor: "#177EFF !important",
           borderRadius: "8px",
           textTransform: "none",
           boxShadow: "none",
@@ -32,9 +32,11 @@ export default createTheme({
           fontWeight: 400,
           padding: `${rem(10)} 0`,
           transition: "all 0.2s ease-in-out",
-          // '&:hover': {
-          //   color: 'white',
-          // },
+          width: `${rem(163)}`,
+          '&:hover': {
+            color: 'white',
+            backgroundColor: "#177EFF",
+          },
           svg: {
             marginLeft: rem(15),
           },

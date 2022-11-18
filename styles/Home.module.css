@@ -1,5 +1,8 @@
 
-
-.bodyWrapper {
-  background-color: red !important;
+.container {
+  /* max-width: 1032px; */
+  width: 100%;
+  padding: 16px 20px;
+  height: 100vh;
 }
+

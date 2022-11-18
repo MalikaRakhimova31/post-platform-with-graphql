@@ -9,13 +9,28 @@
     border-bottom: 1px solid var(--bg-color);
     padding: rem(15) rem(24);
     &__logoBox {
-        width: rem(208);
+        width: rem(180);
     }
 }
 
 .aside {
     width: rem(208);
     background-color: #fff;
-    height: 100vh;
     padding: rem(32) rem(12);
 }
+
+.tabParent {
+    .tabButton {
+        background-color: var(--secondary-color) !important;
+        border-radius: 8px !important;
+        color: var(--text-color) !important;
+        width: rem(144) !important;
+        min-height: 36px !important;
+        padding: rem(10) rem(12) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        // margin-right: 20px !important;
+    }
+}
+

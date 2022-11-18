@@ -15,7 +15,47 @@
   border-radius: 8px;
   background-color: #fff;
   padding: rem(16) rem(24);
-  margin: rem(16) rem(24);
+  // margin: rem(16) rem(20);
   width: 100%;
-  height: 100vh;
+  height: 100%;
+}
+
+.button {
+  width: rem(163);
+}
+
+input[type="date"] {
+  
+}
+
+.inputBox {
+  width: rem(432);
+  height: rem(36);
+  background: var(--secondary-color);
+  border-radius: 8px;
+  padding: 0 rem(12);
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  transition: border 0.25s ease-in;
+  .input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    background: var(--secondary-color);
+    margin: rem(12) 0;
+    caret-color: var(--primary-color);
+    color: var(--text-color);
+    font-size: rem(13);
+    line-height: rem(12);
+    font-weight: 400;
+    &::placeholder {
+      color: #667281;
+    }
+  }
+  &:focus-visible, &:active, &:hover {
+    border: 1px solid var(--primary-color);
+    transition: border 0.25s ease-in;
+  }
 }
