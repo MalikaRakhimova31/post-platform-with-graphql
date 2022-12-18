@@ -7,6 +7,7 @@ import styles from './Moleculas.module.scss'
 import StatusCounter from 'components/atoms/StatusCounter';
 import CustomizedTables from './CustomTable';
 import { useSelector } from 'react-redux';
+import {request} from '../../../service/request'
 
 
 function TabPanel(props) {
@@ -46,19 +47,50 @@ function a11yProps(index) {
 
 export default function CustomTabs({tabLabel}) {
   const [value, setValue] = React.useState(0);
-  const postData = useSelector(state => state.post.data)
+ 
   const [draft, setDraft] = useState([])
   const [published, setPublished] = useState([])
-  console.log("postData", postData);
+  const [posts, setPosts] = useState([])
+ 
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   useEffect(() => {
-    setDraft(postData.filter((item) => item.status === 'Draft'))
-    setPublished(postData.filter((item) => item.status === 'Published'))
+    setDraft(posts.filter((item) => item.status === 'Draft'))
+    setPublished(posts.filter((item) => item.status === 'Published'))
   }, [])
+
+  // console.log("draft", draft);
+  
+
+
+  useEffect(() => {
+    request(`query getPost{
+          allPosts {
+            id
+            status
+            time
+            title
+          }
+          
+        }
+        query getPublishedPost {
+          allPosts(filter: {status: "all"}) {
+            title,
+            time,
+            id,
+            status
+          }
+        }`, "getPost").then((res) => {
+          console.log("ress=>", res)
+                  setPosts(res.data.allPosts)
+                })
+          }, [])
+
+  // console.log("posts", posts);
+  
 
   return (
     <>
@@ -71,13 +103,13 @@ export default function CustomTabs({tabLabel}) {
                 }}
                 className={styles.tabButton}
                 key={`status-${item.status}`}
-                icon={<StatusCounter count={item.name === 'Draft' ? draft.length : item.name === 'Published' ? published.length : postData.length}/>}
+                icon={<StatusCounter count={item.name === 'Draft' ? draft.length : item.name === 'Published' ? published.length : posts.length}/>}
                 iconPosition='right'
             />)}
         </Tabs>
       </div>
         <TabPanel value={value} index={0}>
-          {postData.length > 0 ? <CustomizedTables posts={postData} /> : 
+          {posts.length > 0 ? <CustomizedTables posts={posts} /> : 
           <div className='w-full min-h-[70vh] flex items-center justify-center'><img src='/images/empty.svg' alt='no data image' className='w-[300px] h-[400]'/></div>
           }
       </TabPanel>

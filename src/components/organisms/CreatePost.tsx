@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { postReducer } from '../../../store/posts'
 import { CalendarIcon } from 'components/Icons'
 import { useRouter } from 'next/router'
+import { request } from '../../../service/request'
 
 
 export default function CreatePost() {
@@ -15,10 +16,7 @@ export default function CreatePost() {
     ]
     const router = useRouter()
     const dispatch = useDispatch()
-    const postData = useSelector(state => state.post.data) 
-    console.log("object", postData[postData.length-1] );
     const [post, setPost] = useState<object>({
-        id: postData.length > 0 ? postData[0].id + 1 : 1,
         title: '',
         time: '',
         status: ''
@@ -27,6 +25,13 @@ export default function CreatePost() {
         event.preventDefault()
         console.dir("event form", event.target)
         dispatch(postReducer(post))
+        request(`mutation createNewPost {
+            createPost(title: "${post.title}", time: "${post.time}", status: "${post.status}") {
+                title
+                time
+                status
+            }
+            }`, "createNewPost", ).then(res => console.log("res",res))
         router.push('/')
     }
 

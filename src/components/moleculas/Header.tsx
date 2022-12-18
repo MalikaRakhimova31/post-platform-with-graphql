@@ -7,7 +7,7 @@ export default function Header() {
     const childRout = ['/create-post']
     const router = useRouter()
     return (<header className={styles.header}>
-        <div className={styles.header__logoBox} onClick={() => router.push('/')}><Logo /></div>
+        <div className={styles.header__logoBox} onClick={() => router.push('/')}>LOGO</div>
         <div>{childRout.includes(router.pathname) ?
             <div className='flex items-center'>
                 <div  onClick={() => router.push('/')}
